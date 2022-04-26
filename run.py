@@ -1,9 +1,12 @@
 import sys
+
+from PyQt5.QtGui import QTextCursor
+
 import designer.MainGUI as MainGUI
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5 import QtWidgets
 import ppocrDemo
-from PyQt5.QtCore import pyqtSignal, QObject, QBasicTimer
+from PyQt5.QtCore import pyqtSignal, QObject
 import ctypes
 from threading import Thread
 
@@ -14,8 +17,11 @@ class MySignals(QObject):
     # 定义信号
     signal_count = pyqtSignal(str)
     signal_ocr = pyqtSignal(str)
+    signal_count_2 = pyqtSignal(str)
+    signal_err_ocr = pyqtSignal(str)
     signal_xz1 = pyqtSignal(str)
     signal_xz2 = pyqtSignal(str)
+
 
 class Signals(QMainWindow, MainGUI.Ui_MainWindow):
     def __init__(self):
@@ -27,12 +33,16 @@ class Signals(QMainWindow, MainGUI.Ui_MainWindow):
         # 实例化
         self.ms_signals_count = MySignals()
         self.ms_signals_ocr = MySignals()
+        self.ms_signals_count_2 = MySignals()
+        self.ms_signals_err_ocr = MySignals()
         self.ms_signals_xz1 = MySignals()
         self.ms_signals_xz2 = MySignals()
 
         # 连接信号
         self.ms_signals_count.signal_count.connect(self.update_count)
         self.ms_signals_ocr.signal_ocr.connect(self.update_ocr)
+        self.ms_signals_count_2.signal_count_2.connect(self.update_count_2)
+        self.ms_signals_err_ocr.signal_err_ocr.connect(self.update_err_ocr)
         self.ms_signals_xz1.signal_xz1.connect(self.update_xz1)
         self.ms_signals_xz2.signal_xz2.connect(self.update_xz2)
 
@@ -41,6 +51,12 @@ class Signals(QMainWindow, MainGUI.Ui_MainWindow):
 
     def update_ocr(self, status):
         self.startButton.setText(status)
+
+    def update_count_2(self, count2):
+        self.count_2.setText(str(count2))
+
+    def update_err_ocr(self, err):
+        self.log.setText(err)
 
     def update_xz1(self, txt):
         self.img_path.setText(txt.replace('/', '\\'))
@@ -61,8 +77,14 @@ class Signals(QMainWindow, MainGUI.Ui_MainWindow):
 
         def run_ocr():
             self.ms_signals_ocr.signal_ocr.emit("正在进行识别...")
-            ppocrDemo.ocr(img_path, csv_path + '/')
+            err, err_num = ppocrDemo.ocr(img_path, csv_path + '/')
+            str_err = ''
+            for i in range(len(err)):
+                str_err += str(i) + '. ' + str(err[i]) + '\n'
+
             self.ms_signals_ocr.signal_ocr.emit("识别完成!")
+            self.ms_signals_err_ocr.signal_err_ocr.emit(str_err)
+            self.ms_signals_count_2.signal_count_2.emit(str(err_num))
 
         t2 = Thread(target=run_ocr)
         t2.start()
@@ -84,10 +106,13 @@ class Signals(QMainWindow, MainGUI.Ui_MainWindow):
     def init_ui(self):
         MainGUI.Ui_MainWindow.setupUi(self, self)
         self.img_path.setPlaceholderText("请输入图片文件夹全路径（例如：F:\\images）")
-        self.img_path.setText("F:\\OcrYq\\images")
+        self.img_path.setText("D:\\Desktop\\OCRandQPTandIS\\testimg")
         self.csv_path.setPlaceholderText("请输入csv文件夹全路径（例如：D:\\desktop\\csv）")
-        self.csv_path.setText("D:\\desktop\\csv")
+        self.csv_path.setText("D:\\Desktop\\OCRandQPTandIS\\csv")
         self.count.setText("0")
+        self.count_2.setText("0")
+        self.log.setPlaceholderText("暂未发现风险数据")
+        self.log.moveCursor(QTextCursor.End)
 
         self.startButton.clicked.connect(self.onclick1)
         self.resetButton.clicked.connect(self.onclick2)
