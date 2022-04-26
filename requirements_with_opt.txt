@@ -1,0 +1,54 @@
+# Here is the list of packages automatically derived by QPT
+# you can ignore the dependent packages in the main package and only care about the main package
+# For example, you need to install paddlepaddle and pillow, because paddlepaddle relies on pillow, so you only need to install paddlepaddle.
+# ---------------------------------------------------------------------
+# QPT Home:        https://github.com/GT-ZhangAcer/QPT
+# ---------------------------------------------------------------------
+# 
+# -------------Mainly depends on package analysis results--------------
+
+qpt==1.0b3.dev7
+paddleocr==2.4.0.4
+pyqt5==5.15.4
+
+# ----------------------Ignored dependent packages---------------------
+#gast==0.3.3
+#importlib-metadata==2.0.0
+#mkl-random==1.2.2
+#olefile==0.46
+#paddlehub==2.2.0
+#paddlepaddle==2.2.1
+#pyopenssl==20.0.1
+#pyqt5-tools==5.15.4.3.2
+#pysocks==1.7.1
+#win-inet-pton==1.1.0
+#Pillow==8.3.1
+
+# ----------------------Ignored sub dependent packages---------------------
+
+# -----Dependencies of qpt
+#ttkbootstrap==0.5.1
+#pillow
+#wget
+#click
+#pefile
+
+# -----Dependencies of paddleocr
+#shapely
+#tqdm
+#cython
+#opencv-contrib-python==4.4.0.46
+#openpyxl
+#lmdb
+#imgaug==0.4.0
+#pyclipper
+#premailer
+#lxml
+#numpy
+#visualdl
+#scikit-image
+#python-levenshtein
+
+# -----Dependencies of pyqt5
+#pyqt5-qt5>=5.15
+#pyqt5-sip<13,>=12.8

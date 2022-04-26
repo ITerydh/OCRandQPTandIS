@@ -1,0 +1,7 @@
+paddlehub
+paddleocr>=2.0.1
+shapely
+pyclipper
+opencv-python
+PyQt5
+tqdm
