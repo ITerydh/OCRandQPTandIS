@@ -22,13 +22,8 @@
 
 截图展示：
 
-> 软件打包后运行效果：
-![软件打包后运行效果](images/image-20220426153605280.png)
-
-> 截图展示：
-![截图展示](images/zs.jpg)
-
-
+> V2版本截图展示：
+![截图展示](images/yanshi.png)
 
 
 B站视频地址：
@@ -43,7 +38,7 @@ B站视频地址：
 ```
 
 ## 2 文件介绍
-![文件内容介绍](https://ai-studio-static-online.cdn.bcebos.com/9a396fb18a714f5ab313df719fa334372a9b3fb5528e4446940ea945a2e74463)
+![文件内容介绍](images/111.png)
 
 
 ## 3 如何使用
