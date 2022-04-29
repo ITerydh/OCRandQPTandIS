@@ -22,8 +22,11 @@
 
 截图展示：
 
-> V2版本截图展示：
-![截图展示](images/yanshi.png)
+> V2版本截图展示：   
+![截图展示1](images/yanshi.png)
+
+> GPU 运行预测，100张图片需要25-35秒    
+![截图展示2](images/result.png)
 
 
 B站视频地址：
@@ -98,7 +101,9 @@ if __name__ == "__main__":
 >
 >    ![image-20220426154156331](images/image-20220426154156331.png)   
 >    在你前面运行脚本时，注意看终端的输出，有介绍，Debug适合在你本机进行判断,exe是否可用
->
+>    ![QPT注释](images/warn.png)   
+
+
 > 2. Release (这里叫PPOcrYq是我自己改名了，打包发送给别人个Release不太合理吧哈哈)
 >
 >    ![image-20220426154219131](images/image-20220426154219131.png)    
